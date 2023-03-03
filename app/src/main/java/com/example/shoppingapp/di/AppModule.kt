@@ -5,6 +5,9 @@ import androidx.room.Room
 import com.example.shoppingapp.data.local.ShoppingDao
 import com.example.shoppingapp.data.local.ShoppingDatabase
 import com.example.shoppingapp.data.remote.PixabayApi
+import com.example.shoppingapp.repositories.ShoppingRepository
+import com.example.shoppingapp.repositories.ShoppingRepositoryImpl
+import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -47,4 +50,13 @@ object AppModule {
         retrofit.create(PixabayApi::class.java)
 
 
+}
+
+
+@Module
+@InstallIn(SingletonComponent::class)
+interface RepModule {
+
+    @Binds
+    fun bindShoppingRepository(shoppingRepositoryImpl: ShoppingRepositoryImpl): ShoppingRepository
 }
