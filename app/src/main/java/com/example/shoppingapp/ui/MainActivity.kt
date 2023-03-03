@@ -6,7 +6,9 @@ import androidx.fragment.app.add
 import androidx.fragment.app.commit
 import com.example.shoppingapp.R
 import com.example.shoppingapp.databinding.ActivityMainBinding
+import dagger.hilt.android.HiltAndroidApp
 
+@HiltAndroidApp
 class MainActivity : AppCompatActivity() {
 
     private var _binding: ActivityMainBinding? = null
