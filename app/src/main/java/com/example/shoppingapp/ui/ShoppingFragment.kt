@@ -6,9 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.shoppingapp.databinding.FragmentShoppingBinding
+import dagger.hilt.android.AndroidEntryPoint
 import dagger.hilt.android.HiltAndroidApp
 
-@HiltAndroidApp
+@AndroidEntryPoint
 class ShoppingFragment : Fragment() {
 
     private var _binding: FragmentShoppingBinding? = null
