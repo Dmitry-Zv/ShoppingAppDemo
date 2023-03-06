@@ -7,11 +7,13 @@ import com.example.shoppingapp.data.remote.ImageResponse
 import com.example.shoppingapp.others.Constants
 import com.example.shoppingapp.others.Resource
 import com.example.shoppingapp.repositories.ShoppingRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+@HiltViewModel
 class ShoppingViewModel @Inject constructor(
     private val repository: ShoppingRepository
 ) : ViewModel() {
