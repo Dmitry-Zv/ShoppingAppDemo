@@ -2,6 +2,9 @@ package com.example.shoppingapp.di
 
 import android.content.Context
 import androidx.room.Room
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
+import com.example.shoppingapp.R
 import com.example.shoppingapp.data.local.ShoppingDao
 import com.example.shoppingapp.data.local.ShoppingDatabase
 import com.example.shoppingapp.data.remote.PixabayApi
@@ -48,6 +51,13 @@ object AppModule {
     @Singleton
     fun providePixabayApi(retrofit: Retrofit): PixabayApi =
         retrofit.create(PixabayApi::class.java)
+
+    @Provides
+    @Singleton
+    fun provideGlideInstance(@ApplicationContext context: Context) =
+        Glide.with(context).setDefaultRequestOptions(RequestOptions()
+            .placeholder(R.drawable.ic_image)
+            .error(R.drawable.ic_image))
 
 
 }
