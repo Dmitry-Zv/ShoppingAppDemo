@@ -1,17 +1,11 @@
 package com.example.shoppingapp.data.local
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import androidx.room.Room
-import androidx.test.core.app.ApplicationProvider
-import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.SmallTest
-import com.example.shoppingapp.launchFragmentInHiltContainer
-import com.example.shoppingapp.ui.ShoppingFragment
 import com.google.common.truth.Truth.assertThat
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.runTest
@@ -19,8 +13,6 @@ import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import org.junit.internal.builders.JUnit4Builder
-import org.junit.runner.RunWith
 import javax.inject.Inject
 import javax.inject.Named
 
@@ -32,6 +24,7 @@ class ShoppingDaoTest {
 
     @get:Rule
     var hiltAndroidRule = HiltAndroidRule(this)
+
     @get:Rule
     var instantTaskExecutorRule = InstantTaskExecutorRule()
 
@@ -50,7 +43,6 @@ class ShoppingDaoTest {
     fun teardown() {
         database.close()
     }
-
 
 
     @Test

@@ -13,10 +13,10 @@ interface ShoppingDao {
     @Delete
     suspend fun deleteShoppingItem(shoppingItem: ShoppingItem)
 
-    @Query("SELECT * FROM shopping_items")
-    fun observeAllShoppingItems():Flow<List<ShoppingItem>>
+    @Query(value = "SELECT * FROM shopping_items")
+    fun observeAllShoppingItems(): Flow<List<ShoppingItem>>
 
-    @Query("SELECT SUM(amount * price) FROM shopping_items")
-    fun observeTotalPrice():Flow<Float>
+    @Query(value = "SELECT SUM(amount * price) FROM shopping_items")
+    fun observeTotalPrice(): Flow<Float?>
 
 }

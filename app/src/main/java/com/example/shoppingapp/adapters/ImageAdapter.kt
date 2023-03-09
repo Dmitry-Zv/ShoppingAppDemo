@@ -1,14 +1,11 @@
 package com.example.shoppingapp.adapters
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.Recycler
 import com.bumptech.glide.RequestManager
-import com.example.shoppingapp.data.remote.ImageResponse
 import com.example.shoppingapp.databinding.ItemImageBinding
 import javax.inject.Inject
 
@@ -24,6 +21,7 @@ class ImageAdapter @Inject constructor(private val glide: RequestManager) :
         override fun areContentsTheSame(oldItem: String, newItem: String): Boolean {
             return oldItem == newItem
         }
+
 
     }
 

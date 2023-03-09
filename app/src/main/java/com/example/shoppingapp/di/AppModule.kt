@@ -55,9 +55,11 @@ object AppModule {
     @Provides
     @Singleton
     fun provideGlideInstance(@ApplicationContext context: Context) =
-        Glide.with(context).setDefaultRequestOptions(RequestOptions()
-            .placeholder(R.drawable.ic_image)
-            .error(R.drawable.ic_image))
+        Glide.with(context).setDefaultRequestOptions(
+            RequestOptions()
+                .placeholder(R.drawable.ic_image)
+                .error(R.drawable.ic_image)
+        )
 
 
 }
