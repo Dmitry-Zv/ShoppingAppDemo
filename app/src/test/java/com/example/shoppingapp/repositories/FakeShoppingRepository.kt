@@ -42,7 +42,7 @@ class FakeShoppingRepository : ShoppingRepository {
 
     }
 
-    override fun observeTotalPrice(): Flow<Float> {
+    override fun observeTotalPrice(): Flow<Float?> {
         return observableTotalPrice
     }
 

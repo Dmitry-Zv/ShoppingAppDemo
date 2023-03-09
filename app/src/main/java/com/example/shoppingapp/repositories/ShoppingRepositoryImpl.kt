@@ -24,14 +24,14 @@ class ShoppingRepositoryImpl @Inject constructor(
         dao.observeAllShoppingItems()
 
 
-    override fun observeTotalPrice(): Flow<Float> = dao.observeTotalPrice()
+    override fun observeTotalPrice(): Flow<Float?> = dao.observeTotalPrice()
 
     override suspend fun searchForImage(imageQuery: String): Resource<ImageResponse> {
         return try {
             val response = pixabayApi.searchForImages(imageQuery = imageQuery)
             if (response.isSuccessful) response.body()?.let {
                 return@let Resource.Success(data = it)
-            }?: Resource.Error("An unknown error")
+            } ?: Resource.Error("An unknown error")
             else {
                 Resource.Error(msg = "An unknown error")
             }

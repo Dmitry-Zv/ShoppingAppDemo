@@ -17,7 +17,7 @@ object TestModule {
 
     @Provides
     @Named("test_db")
-    fun provideShoppingDatabase(@ApplicationContext context:Context):ShoppingDatabase =
+    fun provideShoppingDatabase(@ApplicationContext context: Context): ShoppingDatabase =
         Room.inMemoryDatabaseBuilder(context, ShoppingDatabase::class.java)
             .allowMainThreadQueries()
             .build()

@@ -6,13 +6,13 @@ import com.example.shoppingapp.data.local.ShoppingItem
 import com.example.shoppingapp.others.Constants
 import com.example.shoppingapp.others.Resource
 import com.example.shoppingapp.repositories.FakeShoppingRepository
+import com.example.shoppingapp.ui.events.ViewModelEvent
 import com.google.common.truth.Truth.assertThat
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import org.junit.runner.RunWith
 
 @OptIn(ExperimentalCoroutinesApi::class)
 class ShoppingViewModelTest {
@@ -20,6 +20,7 @@ class ShoppingViewModelTest {
 
     @get:Rule
     var instantTaskExecutorRule = InstantTaskExecutorRule()
+
     @get:Rule
     val mainCoroutineRule = MainCoroutineRule()
 
@@ -35,7 +36,13 @@ class ShoppingViewModelTest {
 
     @Test
     fun `insert shopping item with empty field, returns error`() = runTest {
-        viewModel.insertShoppingItem(name = "name", amountString = "", priceString = "4.3")
+        viewModel.obtainedEvent(
+            event = ViewModelEvent.InsertShoppingItem(
+                name = "name",
+                amountString = "",
+                priceString = "4.3"
+            )
+        )
         assertThat(viewModel.insertShoppingItemStatus.value).isEqualTo(Resource.Error("Shopping item has an empty field."))
     }
 
@@ -48,7 +55,13 @@ class ShoppingViewModelTest {
             }
         }
 
-        viewModel.insertShoppingItem(name = stringName, amountString = "12", priceString = "4.3")
+        viewModel.obtainedEvent(
+            event = ViewModelEvent.InsertShoppingItem(
+                name = stringName,
+                amountString = "12",
+                priceString = "4.3"
+            )
+        )
         assertThat(viewModel.insertShoppingItemStatus.value).isEqualTo(Resource.Error("Shopping item has too long name."))
     }
 
@@ -60,23 +73,37 @@ class ShoppingViewModelTest {
             }
         }
 
-        viewModel.insertShoppingItem(name = "name", amountString = "12", priceString = stringPrice)
+        viewModel.obtainedEvent(
+            event = ViewModelEvent.InsertShoppingItem(
+                name = "name",
+                amountString = "12",
+                priceString = stringPrice
+            )
+        )
         assertThat(viewModel.insertShoppingItemStatus.value).isEqualTo(Resource.Error("Shopping item has too long price field."))
     }
 
     @Test
     fun `insert shopping item with too high amount, returns error`() = runTest {
-        viewModel.insertShoppingItem(
-            name = "name",
-            amountString = "99999999999999999999",
-            priceString = "4.5"
+        viewModel.obtainedEvent(
+            event = ViewModelEvent.InsertShoppingItem(
+                name = "name",
+                amountString = "99999999999999999999",
+                priceString = "4.5"
+            )
         )
         assertThat(viewModel.insertShoppingItemStatus.value).isEqualTo(Resource.Error("Shopping item has too high amount field."))
     }
 
     @Test
     fun `insert shopping item with valid input, returns success`() = runTest {
-        viewModel.insertShoppingItem(name = "name", amountString = "4", priceString = "4.5")
+        viewModel.obtainedEvent(
+            event = ViewModelEvent.InsertShoppingItem(
+                name = "name",
+                amountString = "4",
+                priceString = "4.5"
+            )
+        )
         assertThat(viewModel.insertShoppingItemStatus.value).isEqualTo(
             Resource.Success(
                 data = ShoppingItem(
@@ -91,13 +118,13 @@ class ShoppingViewModelTest {
 
     @Test
     fun `after success insert shoppingItem, returns empty imageUrl`() {
-        viewModel.setCurImageUrl("")
+        viewModel.obtainedEvent(event = ViewModelEvent.SetCurImageUrl(imageUrl = ""))
         assertThat(viewModel.curImageUrl.value).isEqualTo("")
     }
 
     @Test
     fun `if curImageUrl can be observe, return imageUrl`() = runTest {
-        viewModel.setCurImageUrl("imageUrl")
+        viewModel.obtainedEvent(event = ViewModelEvent.SetCurImageUrl(imageUrl = "imageUrl"))
         assertThat(viewModel.curImageUrl.value).isEqualTo("imageUrl")
     }
 

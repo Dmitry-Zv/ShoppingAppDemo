@@ -7,7 +7,7 @@
     <fragment
         android:id="@+id/shoppingFragment"
         android:name="com.example.shoppingapp.ui.ShoppingFragment"
-        android:label="ShoppingFragment" >
+        android:label="ShoppingFragment">
         <action
             android:id="@+id/action_shoppingFragment_to_addShoppingFragment"
             app:destination="@id/addShoppingFragment" />
@@ -15,7 +15,7 @@
     <fragment
         android:id="@+id/addShoppingFragment"
         android:name="com.example.shoppingapp.ui.AddShoppingFragment"
-        android:label="AddShoppingFragment" >
+        android:label="AddShoppingFragment">
         <action
             android:id="@+id/action_addShoppingFragment_to_imagePickFragment"
             app:destination="@id/imagePickFragment" />
